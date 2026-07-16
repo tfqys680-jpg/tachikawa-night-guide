@@ -1,0 +1,110 @@
+/* 立川ナイトガイド 共通スタイル（モバイル最優先） */
+:root {
+  --bg: #131019;
+  --bg2: #1c1726;
+  --card: #221b30;
+  --line: #382e4d;
+  --text: #f2eef8;
+  --muted: #b3a9c9;
+  --gold: #e0b64f;
+  --gold2: #f3d488;
+  --pink: #ff5c8a;
+  --green: #06c755;
+  --red: #e8434d;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+}
+h1, h2, h3 { font-family: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif; line-height: 1.4; }
+a { color: var(--gold2); }
+img { max-width: 100%; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+/* header */
+.site-header { background: rgba(19, 16, 25, .95); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
+.brand { font-weight: 700; color: var(--gold); text-decoration: none; font-size: 18px; letter-spacing: .06em; }
+.brand small { display: block; font-size: 10px; color: var(--muted); letter-spacing: .2em; font-weight: 400; }
+.gnav { display: flex; gap: 14px; font-size: 13px; }
+.gnav a { color: var(--text); text-decoration: none; }
+.gnav a.jobs { color: var(--pink); font-weight: 700; }
+
+/* hero */
+.hero { background: linear-gradient(160deg, #241a3a 0%, #131019 70%); border-bottom: 1px solid var(--line); padding: 48px 0 36px; text-align: center; }
+.hero h1 { font-size: 26px; color: var(--gold2); margin-bottom: 12px; }
+.hero p { color: var(--muted); font-size: 14px; max-width: 640px; margin: 0 auto 20px; }
+.hero .badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.badge { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: 12px; color: var(--gold2); background: rgba(224, 182, 79, .08); }
+
+/* buttons */
+.btn { display: inline-block; border-radius: 10px; padding: 13px 22px; font-weight: 700; text-decoration: none; text-align: center; font-size: 15px; }
+.btn-tel { background: var(--red); color: #fff; }
+.btn-line { background: var(--green); color: #fff; }
+.btn-jobs { background: var(--pink); color: #fff; }
+.btn-ghost { border: 1px solid var(--gold); color: var(--gold2); background: transparent; }
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-row .btn { flex: 1 1 160px; }
+
+/* sections */
+section { padding: 40px 0; }
+.sec-title { text-align: center; font-size: 22px; color: var(--gold2); margin-bottom: 6px; }
+.sec-lead { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 26px; }
+
+/* store cards */
+.stores { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 760px) { .stores { grid-template-columns: repeat(3, 1fr); } }
+.store-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 18px; display: flex; flex-direction: column; gap: 10px; }
+.store-card .type { font-size: 12px; color: var(--pink); font-weight: 700; letter-spacing: .1em; }
+.store-card h3 { font-size: 19px; color: var(--gold2); }
+.store-card .meta { font-size: 12.5px; color: var(--muted); }
+.store-card .desc { font-size: 14px; }
+.store-card .links { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.store-card .links .btn { font-size: 13.5px; padding: 11px 10px; }
+
+/* table */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 12px; overflow: hidden; }
+.tbl th, .tbl td { border-bottom: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: top; }
+.tbl th { width: 30%; color: var(--gold2); font-weight: 700; background: rgba(224, 182, 79, .06); }
+.tbl tr:last-child th, .tbl tr:last-child td { border-bottom: none; }
+
+/* job card */
+.job-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px 20px; margin-bottom: 22px; }
+.job-card h3 { color: var(--gold2); font-size: 20px; margin-bottom: 4px; }
+.job-card .type { color: var(--pink); font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.job-card .tbl { margin: 14px 0; }
+.pending { color: var(--muted); font-size: 12.5px; }
+
+/* notice */
+.notice { background: rgba(232, 67, 77, .08); border: 1px solid rgba(232, 67, 77, .4); border-radius: 12px; padding: 16px 18px; font-size: 13px; color: #f4c6ca; }
+.notice strong { color: #ff9aa3; }
+.note { font-size: 12px; color: var(--muted); }
+
+/* flow */
+.flow { counter-reset: step; display: grid; gap: 12px; }
+.flow li { list-style: none; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 54px; position: relative; font-size: 14px; }
+.flow li::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: #131019; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+/* faq */
+.faq details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; font-size: 14px; }
+.faq summary { cursor: pointer; font-weight: 700; color: var(--gold2); }
+.faq p { margin-top: 8px; color: var(--muted); }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--line); padding: 28px 0 90px; font-size: 12px; color: var(--muted); text-align: center; }
+.site-footer nav { margin-bottom: 10px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.age-note { margin-top: 10px; font-size: 11.5px; }
+
+/* mobile fixed bar */
+.mobile-bar { position: fixed; bottom: 0; left: 0; right: 0; display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(19, 16, 25, .97); border-top: 1px solid var(--line); z-index: 60; }
+.mobile-bar .btn { flex: 1; padding: 12px 8px; font-size: 14px; }
+@media (min-width: 760px) { .mobile-bar { display: none; } .site-footer { padding-bottom: 28px; } }
+
+/* breadcrumbs */
+.crumbs { font-size: 12px; color: var(--muted); padding: 12px 0 0; }
+.crumbs a { color: var(--muted); }
