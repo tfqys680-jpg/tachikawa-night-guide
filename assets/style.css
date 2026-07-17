@@ -108,3 +108,61 @@ section { padding: 40px 0; }
 /* breadcrumbs */
 .crumbs { font-size: 12px; color: var(--muted); padding: 12px 0 0; }
 .crumbs a { color: var(--muted); }
+
+/* ===== Animations (DEMI DO風・Phase: motion) ===== */
+
+/* イントロオーバーレイ */
+#intro {
+  position: fixed; inset: 0; z-index: 999;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .7s ease, visibility .7s;
+}
+#intro.out { opacity: 0; visibility: hidden; }
+#intro img { width: 130px; height: 130px; border-radius: 18px; opacity: 0; transform: scale(.92); animation: introLogo 1s ease forwards; }
+@keyframes introLogo { to { opacity: 1; transform: scale(1); } }
+
+/* スクロールリビール（JSが .reveal を付与 → 交差で .is-in） */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .85s ease, transform .85s cubic-bezier(.22, 1, .36, 1); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* ヒーローの光のオーブ（ゆっくり漂う） */
+.hero { position: relative; overflow: hidden; }
+.hero > .wrap { position: relative; z-index: 2; }
+.hero::before, .hero::after {
+  content: ""; position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 1;
+}
+.hero::before { width: 380px; height: 380px; left: -120px; top: -80px; background: rgba(224, 182, 79, .16); animation: orbA 14s ease-in-out infinite alternate; }
+.hero::after { width: 320px; height: 320px; right: -100px; bottom: -120px; background: rgba(255, 92, 138, .13); animation: orbB 18s ease-in-out infinite alternate; }
+@keyframes orbA { from { transform: translate(0, 0) scale(1); } to { transform: translate(60px, 40px) scale(1.15); } }
+@keyframes orbB { from { transform: translate(0, 0) scale(1.1); } to { transform: translate(-50px, -40px) scale(.95); } }
+
+/* バッジのふわふわ浮遊 */
+.hero .badge { animation: floatY 5s ease-in-out infinite; }
+.hero .badge:nth-child(2) { animation-delay: 1.2s; }
+.hero .badge:nth-child(3) { animation-delay: 2.4s; }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* カードのホバー（持ち上がり＋金の光） */
+.store-card, .job-card { transition: transform .45s cubic-bezier(.22, 1, .36, 1), box-shadow .45s ease, border-color .45s ease; }
+.store-card:hover, .job-card:hover { transform: translateY(-6px); border-color: rgba(224, 182, 79, .55); box-shadow: 0 14px 40px rgba(0, 0, 0, .45), 0 0 24px rgba(224, 182, 79, .12); }
+
+/* ボタンの光のスイープ */
+.btn { position: relative; overflow: hidden; transition: transform .3s ease, filter .3s ease; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.btn::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .25), transparent); transform: skewX(-20deg); transition: left .55s ease; }
+.btn:hover::after { left: 130%; }
+
+/* ブランドマーキー */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); background: var(--bg2); padding: 12px 0; }
+.marquee-track { display: flex; width: max-content; animation: marqueeMove 38s linear infinite; }
+.marquee-track span { white-space: nowrap; font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; letter-spacing: .18em; font-size: 14px; color: transparent; -webkit-text-stroke: 1px rgba(224, 182, 79, .55); padding-right: 3em; }
+@keyframes marqueeMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* 動きを減らす設定のユーザーにはすべて停止 */
+@media (prefers-reduced-motion: reduce) {
+  #intro { display: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero::before, .hero::after, .hero .badge, .marquee-track { animation: none; }
+  .store-card, .job-card, .btn { transition: none; }
+}
