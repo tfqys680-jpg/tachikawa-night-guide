@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tachikawa-night.jp/sitemap.xml
