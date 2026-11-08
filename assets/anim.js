@@ -4,24 +4,7 @@
   "use strict";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  // ---- イントロ（1セッション1回・トップのみ） ----
   var isTop = /(?:^|\/)(index\.html)?$/.test(location.pathname);
-  if (isTop && !sessionStorage.getItem("introShown")) {
-    sessionStorage.setItem("introShown", "1");
-    var intro = document.createElement("div");
-    intro.id = "intro";
-    var logo = document.createElement("img");
-    logo.src = "assets/logo.png";
-    logo.alt = "立川ナイトガイド";
-    intro.appendChild(logo);
-    document.body.appendChild(intro);
-    document.body.style.overflow = "hidden";
-    setTimeout(function () {
-      intro.classList.add("out");
-      document.body.style.overflow = "";
-      setTimeout(function () { intro.remove(); }, 800);
-    }, 1500);
-  }
 
   // ---- スクロールリビール ----
   var targets = document.querySelectorAll(
