@@ -75,7 +75,7 @@ section { padding: 40px 0; }
 
 /* job card */
 .job-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px 20px; margin-bottom: 22px; }
-.job-card h3 { color: var(--gold2); font-size: 20px; margin-bottom: 4px; }
+.job-card h2 { color: var(--gold2); font-size: 20px; margin-bottom: 4px; }
 .job-card .type { color: var(--pink); font-size: 12px; font-weight: 700; letter-spacing: .08em; }
 .job-card .tbl { margin: 14px 0; }
 .pending { color: var(--muted); font-size: 12.5px; }
@@ -110,17 +110,6 @@ section { padding: 40px 0; }
 .crumbs a { color: var(--muted); }
 
 /* ===== Animations (DEMI DO風・Phase: motion) ===== */
-
-/* イントロオーバーレイ */
-#intro {
-  position: fixed; inset: 0; z-index: 999;
-  background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity .7s ease, visibility .7s;
-}
-#intro.out { opacity: 0; visibility: hidden; }
-#intro img { width: 130px; height: 130px; border-radius: 18px; opacity: 0; transform: scale(.92); animation: introLogo 1s ease forwards; }
-@keyframes introLogo { to { opacity: 1; transform: scale(1); } }
 
 /* スクロールリビール（JSが .reveal を付与 → 交差で .is-in） */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .85s ease, transform .85s cubic-bezier(.22, 1, .36, 1); }
@@ -161,8 +150,30 @@ section { padding: 40px 0; }
 
 /* 動きを減らす設定のユーザーにはすべて停止 */
 @media (prefers-reduced-motion: reduce) {
-  #intro { display: none; }
+  html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero::before, .hero::after, .hero .badge, .marquee-track { animation: none; }
   .store-card, .job-card, .btn { transition: none; }
+}
+
+/* 店舗・求人への移動とスマートフォンでの読みやすさ */
+[id] { scroll-margin-top: 110px; }
+.hero-subtitle { display: inline-block; margin-top: 8px; font-size: 18px; }
+.store-card h3 a { color: inherit; text-underline-offset: .2em; }
+.job-picker { margin-bottom: 26px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.job-picker h2 { font-size: 20px; color: var(--gold2); }
+.job-picker p { margin: 8px 0 16px; font-size: 14px; color: var(--muted); }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--gold2); outline-offset: 4px; }
+@media (max-width: 759px) {
+  .job-picker .btn-row { flex-direction: column; }
+  .job-picker .btn-row .btn { flex: auto; }
+  .site-footer { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+  .site-header .wrap { flex-wrap: wrap; gap: 8px 14px; }
+  .gnav a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+@media (max-width: 480px) {
+  .job-card { padding: 20px 14px; }
+  .tbl, .tbl tbody, .tbl tr, .tbl th, .tbl td { display: block; width: 100%; }
+  .tbl th { padding: 10px 12px 4px; border-bottom: 0; }
+  .tbl td { padding: 8px 12px 14px; overflow-wrap: anywhere; }
 }
